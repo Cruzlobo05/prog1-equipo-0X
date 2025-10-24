@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodastock - Login y Registro</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="email"], input[type="password"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .message { margin-top: 20px; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sodastock - Acceso al Sistema</h1>
+        <div id="status-message" class="message" style="display:none;"></div>
+
+        <h2>1. Iniciar Sesión</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Contraseña:</label>
+                <input type="password" id="login-password" required>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+
+        <hr style="margin: 30px 0;">
+
+        <h2>2. Registrar Usuario</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Contraseña (Mín. 8-20, Mayús, Minús, Número, Carácter Esp.):</label>
+                <input type="password" id="register-password" required>
+            </div>
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://127.0.0.1:8000/api/';
+        const statusMessage = document.getElementById('status-message');
+
+        function showMessage(type, message) {
+            statusMessage.style.display = 'block';
+            statusMessage.className = `message ${type}`;
+            statusMessage.textContent = message;
+        }
+
+        // --- LÓGICA DEL LOGIN ---
+        document.getElementById('login-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const contrasena = document.getElementById('login-password').value;
+
+            try {
+                const response = await fetch(API_BASE_URL + 'login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, contrasena: contrasena })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('success', data.mensaje);
+                    // Aquí podrías redirigir al dashboard: window.location.href = '/dashboard';
+                } else {
+                    showMessage('error', data.detail || 'Error desconocido al iniciar sesión.');
+                }
+            } catch (error) {
+                showMessage('error', 'Error de conexión con el servidor.');
+                console.error('Error:', error);
+            }
+        });
+
+        // --- LÓGICA DEL REGISTRO ---
+        document.getElementById('register-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const email = document.getElementById('register-email').value;
+            const contrasena = document.getElementById('register-password').value;
+
+            try {
+                const response = await fetch(API_BASE_URL + 'register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, contrasena: contrasena })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showMessage('success', data.mensaje);
+                    document.getElementById('register-form').reset(); // Limpiar formulario
+                } else {
+                    showMessage('error', data.detail || 'Error desconocido al registrar usuario.');
+                }
+            } catch (error) {
+                showMessage('error', 'Error de conexión con el servidor.');
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
