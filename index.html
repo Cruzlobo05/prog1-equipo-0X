@@ -1,15 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SodaStock</title>
+    <style>
+        body { background-color: #FFFFFF; color: #000000; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        nav { background-color: #007BFF; color: #FFFFFF; padding: 10px; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: #FFFFFF; text-decoration: none; margin: 0 10px; }
+        nav a:hover { text-decoration: underline; }
+        .section { display: none; }
+        .active { display: block; }
+        .card { background-color: #FFFFFF; border: 1px solid #007BFF; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn { background-color: #007BFF; color: #FFFFFF; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; margin: 5px; }
+        .btn:hover { background-color: #0056b3; }
+        .btn-danger { background-color: #DC3545; }
+        .btn-danger:hover { background-color: #C82333; }
+        .btn-success { background-color: #28A745; }
+        .btn-success:hover { background-color: #218838; }
+        .btn-warning { background-color: #FFC107; color: #000000; }
+        .btn-warning:hover { background-color: #E0A800; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #007BFF; padding: 8px; text-align: left; }
+        th { background-color: #F0F8FF; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background-color: #FFFFFF; padding: 20px; border-radius: 8px; width: 400px; }
+        .alert { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .alert-danger { background-color: #F8D7DA; color: #721C24; }
+        .alert-success { background-color: #D4EDDA; color: #155724; }
+        input, button { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>SodaStock</div>
+        <div>
+            <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+            <a href="#" onclick="showSection('clientes')">Clientes</a>
+            <a href="#" onclick="showSection('inventario')">Inventario</a>
+            <a href="#" onclick="logout()">Cerrar Sesión</a>
+        </div>
+    </nav>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Sistema AquaFlow - Gestión de Soderías</title>
-    </head>
+    <div id="login" class="section active">
+        <div class="card">
+            <h1>Inicio de Sesión</h1>
+            <div id="loginMessage" class="alert alert-danger" style="display: none;"></div>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="usuario" placeholder="Usuario" required><br>
+                <input type="password" id="contrasena" placeholder="Contraseña" required><br>
+                <button type="submit" class="btn">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+    <div id="dashboard" class="section">
+        <h1>Dashboard</h1>
+        <div class="card">
+            <h2>Clientes</h2>
+            <p>Gestiona tus clientes.</p>
+            <button class="btn" onclick="showSection('clientes')">Ir a Clientes</button>
+        </div>
+        <div class="card">
+            <h2>Inventario</h2>
+            <p>Administra tu inventario.</p>
+            <button class="btn" onclick="showSection('inventario')">Ir a Inventario</button>
+        </div>
+    </div>
+
+    <div id="clientes" class="section">
+        <h1>Gestionar Clientes</h1>
+        <div id="clientesMessage" class="alert" style="display: none;"></div>
+        <div class="card">
+            <h2>Lista de Clientes</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Email</th></tr></thead>
+                <tbody id="clientesTable"></tbody>
+            </table>
+        </div>
+        <button class="btn btn-success" onclick="showModal('agregarClienteModal')">Agregar</button>
+        <button class="btn btn-warning" onclick="showModal('editarClienteModal')">Editar</button>
+        <button class="btn btn-danger" onclick="showModal('eliminarClienteModal')">Eliminar</button>
+    </div>
+
+    <div id="inventario" class="section">
+        <h1>Gestionar Inventario</h1>
+        <div id="inventarioMessage" class="alert" style="display: none;"></div>
+        <div class="card">
+            <h2>Lista de Productos</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Nombre</th><th>Stock</th><th>Precio</th></tr></thead>
+                <tbody id="inventarioTable"></tbody>
+            </table>
+        </div>
+        <button class="btn btn-success" onclick="showModal('agregarProductoModal')">Agregar</button>
+        <button class="btn btn-warning" onclick="showModal('editarProductoModal')">Editar</button>
+        <button class="btn btn-danger" onclick="showModal('eliminarProductoModal')">Eliminar</button>
+    </div>
+
+    <!-- Modales -->
+    <div id="agregarClienteModal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar Cliente</h2>
+            <form onsubmit="handleCliente(event, 'agregar')">
+                <input type="text" id="addClienteNombre" placeholder="Nombre" required><br>
+                <input type="email" id="addClienteEmail" placeholder="Email" required><br>
+                <button type="submit" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn" onclick="hideModal('agregarClienteModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div id="editarClienteModal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Cliente</h2>
+            <form onsubmit="handleCliente(event, 'editar')">
+                <input type="number" id="editClienteId" placeholder="ID" required><br>
+                <input type="text" id="editClienteNombre" placeholder="Nombre" required><br>
+                <input type="email" id="editClienteEmail" placeholder="Email" required><br>
+                <button type="submit" class="btn btn-warning">Editar</button>
+                <button type="button" class="btn" onclick="hideModal('editarClienteModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div id="eliminarClienteModal" class="modal">
+        <div class="modal-content">
+            <h2>Eliminar Cliente</h2>
+            <form onsubmit="handleCliente(event, 'eliminar')">
+                <input type="number" id="delClienteId" placeholder="ID" required><br>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn" onclick="hideModal('eliminarClienteModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div id="agregarProductoModal" class="modal">
+        <div class="modal-content">
+            <h2>Agregar Producto</h2>
+            <form onsubmit="handleProducto(event, 'agregar')">
+                <input type="text" id="addProductoNombre" placeholder="Nombre" required><br>
+                <input type="number" id="addProductoStock" placeholder="Stock" required><br>
+                <input type="number" step="0.01" id="addProductoPrecio" placeholder="Precio" required><br>
+                <button type="submit" class="btn btn-success">Agregar</button>
+                <button type="button" class="btn" onclick="hideModal('agregarProductoModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div id="editarProductoModal" class="modal">
+        <div class="modal-content">
+            <h2>Editar Producto</h2>
+            <form onsubmit="handleProducto(event, 'editar')">
+                <input type="number" id="editProductoId" placeholder="ID" required><br>
+                <input type="text" id="editProductoNombre" placeholder="Nombre" required><br>
+                <input type="number" id="editProductoStock" placeholder="Stock" required><br>
+                <input type="number" step="0.01" id="editProductoPrecio" placeholder="Precio" required><br>
+                <button type="submit" class="btn btn-warning">Editar</button>
+                <button type="button" class="btn" onclick="hideModal('editarProductoModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+    <div id="eliminarProductoModal" class="modal">
+        <div class="modal-content">
+            <h2>Eliminar Producto</h2>
+            <form onsubmit="handleProducto(event, 'eliminar')">
+                <input type="number" id="delProductoId" placeholder="ID" required><br>
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn" onclick="hideModal('eliminarProductoModal')">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar secciones
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Función para mostrar modales
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+
+        // Función para ocultar modales
+        function hideModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Función para manejar login
+        async function handleLogin(event) {
+            event.preventDefault();
+            const usuario = document.getElementById('usuario').value;
+            const contrasena = document.getElementById('contrasena').value;
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario, contrasena })
+            });
+            const data = await response.json();
+            if (data.success) {
+                showSection('dashboard');
+            } else {
+                document.getElementById('loginMessage').textContent = 'Credenciales incorrectas.';
+                document.getElementById('loginMessage').style.display = 'block';
+            }
+        }
+
+        // Función para logout
+        async function logout() {
+            await fetch('/logout', { method: 'POST' });
+            showSection('login');
+        }
+
+        // Función para manejar clientes
+        async function handleCliente(event, action) {
+            event.preventDefault();
+            const data = { action };
+            if (action === 'agregar') {
+                data.nombre = document.getElementById('addClienteNombre').value;
+                data.email = document.getElementById('addClienteEmail').value;
+            } else if (action === 'editar') {
+                data.id = parseInt(document.getElementById('editClienteId').value);
+                data.nombre = document.getElementById('editClienteNombre').value;
+                data.email = document.getElementById('editClienteEmail').value;
+            } else if (action === 'eliminar') {
+                data.id = parseInt(document.getElementById('delClienteId').value);
+            }
+
+            const response = await fetch('/clientes', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            const msgEl = document.getElementById('clientesMessage');
+            msgEl.textContent = result.message || (result.success ? 'Operación exitosa.' : 'Error en la operación.');
+            msgEl.className = 'alert ' + (result.success ? 'alert-success' : 'alert-danger');
+            msgEl.style.display = 'block';
+            hideModal(action === 'agregar' ? 'agregarClienteModal' : action === 'editar' ? 'editarClienteModal' : 'eliminarClienteModal');
+            loadClientes();
+        }
+
+        async function loadClientes() {
+            try {
+                const res = await fetch('/clientes');
+                const clientes = await res.json();
+                const tbody = document.getElementById('clientesTable');
+                tbody.innerHTML = '';
+                (clientes || []).forEach(c => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${c.id}</td><td>${c.nombre}</td><td>${c.email}</td>`;
+                    tbody.appendChild(tr);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        // Funciones mínimas para productos (similares a clientes)
+        async function handleProducto(event, action) {
+            event.preventDefault();
+            const data = { action };
+            if (action === 'agregar') {
+                data.nombre = document.getElementById('addProductoNombre').value;
+                data.stock = parseInt(document.getElementById('addProductoStock').value);
+                data.precio = parseFloat(document.getElementById('addProductoPrecio').value);
+            } else if (action === 'editar') {
+                data.id = parseInt(document.getElementById('editProductoId').value);
+                data.nombre = document.getElementById('editProductoNombre').value;
+                data.stock = parseInt(document.getElementById('editProductoStock').value);
+                data.precio = parseFloat(document.getElementById('editProductoPrecio').value);
+            } else if (action === 'eliminar') {
+                data.id = parseInt(document.getElementById('delProductoId').value);
+            }
+
+            const response = await fetch('/productos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            const msgEl = document.getElementById('inventarioMessage');
+            msgEl.textContent = result.message || (result.success ? 'Operación exitosa.' : 'Error en la operación.');
+            msgEl.className = 'alert ' + (result.success ? 'alert-success' : 'alert-danger');
+            msgEl.style.display = 'block';
+            hideModal(action === 'agregar' ? 'agregarProductoModal' : action === 'editar' ? 'editarProductoModal' : 'eliminarProductoModal');
+            loadInventario();
+        }
+
+        async function loadInventario() {
+            try {
+                const res = await fetch('/productos');
+                const productos = await res.json();
+                const tbody = document.getElementById('inventarioTable');
+                tbody.innerHTML = '';
+                (productos || []).forEach(p => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `<td>${p.id}</td><td>${p.nombre}</td><td>${p.stock}</td><td>${p.precio}</td>`;
+                    tbody.appendChild(tr);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        // Cargar datos iniciales
+        loadClientes();
+        loadInventario();
+    </script>  
