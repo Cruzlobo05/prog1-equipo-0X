@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SodaStock - Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div id="sidebar-header">
+                <div id="sidebar-logo-circle">
+                    <svg id="logo-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                             viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"></path>
+                            <path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"></path>
+                    </svg>
+                </div>
+                <span id="sidebar-logo-text">SodaStock</span>
+            </div>
+
+            <nav id="sidebar-nav">
+                <a href="#" id="nav-dashboard" data-active="true">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" id="nav-clientes">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>Clientes</span>
+                </a>
+                <a href="#" id="nav-inventario">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    </svg>
+                    <span>Inventario</span>
+                </a>
+                <a href="#" id="nav-reportes">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>Reportes</span>
+                </a>
+                <a href="#" id="nav-empleados">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span>Empleados</span>
+                </a>
+            </nav>
+
+            <div id="sidebar-footer">
+                <div id="user-profile">
+                    <div id="user-avatar">AS</div>
+                    <div id="user-info">
+                        <div id="user-name">Admin Soderia</div>
+                        <div id="user-email">carlos11gomez211@gmail.com</div>
+                    </div>
+                </div>
+                <button id="logout-button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <header id="dashboard-header">
+                <div id="header-left">
+                    <h1 id="header-title">Hola, Admin</h1>
+                    <p id="header-subtitle">Aquí tienes un resumen de tu sodería para el día de hoy</p>
+                </div>
+                <div id="status-badge">En línea</div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div id="stats-grid">
+                <div id="stat-card-1">
+                    <div id="stat-header-1">
+                        <span>Clientes Activos</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        </svg>
+                    </div>
+                    <div id="stat-value-1">324</div>
+                    <div id="stat-change-1">+12 desde el mes pasado</div>
+                </div>
+
+                <div id="stat-card-2">
+                    <div id="stat-header-2">
+                        <span>Bidones en Circulación</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                    </div>
+                    <div id="stat-value-2">1,247</div>
+                    <div id="stat-change-2">-23 vs. ayer</div>
+                </div>
+
+                <div id="stat-card-3">
+                    <div id="stat-header-3">
+                        <span>Deudas Pendientes</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div id="stat-value-3">$87,340</div>
+                    <div id="stat-change-3">15 clientes con deuda</div>
+                </div>
+
+                <div id="stat-card-4">
+                    <div id="stat-header-4">
+                        <span>Ventas del Mes</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <div id="stat-value-4">$543,210</div>
+                    <div id="stat-change-4">+18.2% vs. mes anterior</div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div id="charts-grid">
+                <div id="chart-card-1">
+                    <div id="chart-header-1">
+                        <h3>Ventas Últimos 7 Meses</h3>
+                        <p>Evolución de ventas mensuales</p>
+                    </div>
+                    <canvas id="sales-chart"></canvas>
+                </div>
+
+                <div id="chart-card-2">
+                    <div id="chart-header-2">
+                        <h3>Entregas Semanales</h3>
+                        <p>Distribución semanal de entregas</p>
+                    </div>
+                    <canvas id="deliveries-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- Lists Section -->
+            <div id="lists-grid">
+                <div id="list-card-1">
+                    <div id="list-header-1">
+                        <div>
+                            <h3>Acciones Pendientes</h3>
+                            <p>Tareas que requieren atención</p>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <div id="pending-list"></div>
+                </div>
+
+                <div id="list-card-2">
+                    <div id="list-header-2">
+                        <div>
+                            <h3>Entregas de Hoy</h3>
+                            <p>Estado en tiempo real</p>
+                        </div>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <div id="deliveries-list"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>
