@@ -1,0 +1,4 @@
+Carlos Mariño, aprender a codear mucho mejor en python
+Carlos Alvarez,
+Cruz Lobo,
+Dario Gomez,
