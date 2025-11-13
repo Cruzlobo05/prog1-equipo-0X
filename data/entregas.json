@@ -1,0 +1,6 @@
+[
+  { "cliente": "Almacén San José", "dia": "Lun", "hora": "09:30" },
+  { "cliente": "Kiosco Central", "dia": "Mar", "hora": "10:45" },
+  { "cliente": "Minimercado Norte", "dia": "Mié", "hora": "11:20" },
+  { "cliente": "Bar El Encuentro", "dia": "Jue", "hora": "14:30" }
+]

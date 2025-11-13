@@ -6,12 +6,10 @@ from pydantic import BaseModel
 import json
 import os
 import random
-import smtplib
-from email.message import EmailMessage
 
 app = FastAPI()
 
-# CORS
+# ------------------ CORS ------------------
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,11 +18,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Archivos estáticos
+# ------------------ ARCHIVOS ESTÁTICOS ------------------
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Cargar usuarios desde JSON
-fake_users_db = {}
+# ------------------ CARGA DE USUARIOS ------------------
 json_path = os.path.join(os.path.dirname(__file__), "users.json")
 
 def load_users():
@@ -45,18 +42,32 @@ def save_users(data):
 
 fake_users_db = load_users()
 
-# Servir index.html
+# ------------------ RUTAS ------------------
+
+# Página principal (login)
 @app.get("/")
 def read_root():
     return FileResponse("static/index.html")
 
-# Modelo de login
+# Página principal del panel (antes era dashboard)
+@app.get("/base")
+def base_panel():
+    return FileResponse("static/base.html")
+
+# Cargar secciones dinámicas dentro del panel (Dashboard, Clientes, etc.)
+@app.get("/partial/{page}")
+async def get_partial(page: str):
+    file_path = os.path.join("static", "sections", f"{page}.html")
+    if os.path.exists(file_path):
+        return FileResponse(file_path)
+    return JSONResponse(status_code=404, content={"error": "Sección no encontrada"})
+
+# ------------------ LOGIN ------------------
 class LoginRequest(BaseModel):
-    email: str  # puede ser email o username
+    email: str
     password: str
     remember: bool
 
-# Ruta de login
 @app.post("/api/auth/login")
 async def login_api(data: LoginRequest):
     user = next(
@@ -78,7 +89,7 @@ async def login_api(data: LoginRequest):
         }
     }
 
-# Ruta de recuperación de contraseña
+# ------------------ RECUPERACIÓN DE CONTRASEÑA ------------------
 @app.post("/api/auth/forgot-password")
 async def forgot_password(request: Request):
     datos = await request.json()
@@ -96,9 +107,30 @@ async def forgot_password(request: Request):
     enviar_codigo(email, codigo)
     return {"message": "Código enviado al correo"}
 
-# Función para enviar el código por correo
+# ------------------ DATOS DE USUARIO ------------------
+@app.get("/api/user")
+def get_user(email: str):
+    usuarios = load_users()
+    usuario = next((u for u in usuarios.values() if u["email"] == email), None)
+    if not usuario:
+        return JSONResponse(status_code=404, content={"detail": "Usuario no encontrado"})
+    return usuario
+
+# ------------------ DASHBOARD: DATOS ------------------
+@app.get("/api/dashboard/ventas")
+def get_ventas():
+    return {
+        "labels": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul"],
+        "data": [65000, 72000, 68000, 78000, 82000, 95000, 98000]
+    }
+
+@app.get("/api/dashboard/entregas")
+def get_entregas():
+    return {
+        "labels": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+        "data": [45, 52, 48, 62, 55, 68, 42]
+    }
+
+# ------------------ FUNCIÓN DE CORREO (SIMULADA) ------------------
 def enviar_codigo(destinatario, codigo):
     print(f"📧 Simulación: se enviaría el código {codigo} al correo {destinatario}")
-    # Podés guardar un log si querés:
-    # with open("logs_envio.txt", "a", encoding="utf-8") as f:
-    #     f.write(f"{destinatario} recibió el código {codigo}\n")

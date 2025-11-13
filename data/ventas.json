@@ -1,0 +1,9 @@
+[
+  { "mes": "Ene", "monto": 65000 },
+  { "mes": "Feb", "monto": 72000 },
+  { "mes": "Mar", "monto": 68000 },
+  { "mes": "Abr", "monto": 78000 },
+  { "mes": "May", "monto": 82000 },
+  { "mes": "Jun", "monto": 95000 },
+  { "mes": "Jul", "monto": 98000 }
+]

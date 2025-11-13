@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Almacén San José",
+    "direccion": "Av. San Martín 1234",
+    "telefono": "11-4567-8901"
+  },
+  {
+    "id": 2,
+    "nombre": "Kiosco Central",
+    "direccion": "Calle Principal 567",
+    "telefono": "11-2345-6789"
+  },
+  {
+    "id": 3,
+    "nombre": "Minimercado Norte",
+    "direccion": "Barrio Alto",
+    "telefono": "11-9876-5432"
+  },
+  {
+    "id": 4,
+    "nombre": "Bar El Encuentro",
+    "direccion": "5 de Julio 2345",
+    "telefono": "11-1122-3344"
+  }
+]

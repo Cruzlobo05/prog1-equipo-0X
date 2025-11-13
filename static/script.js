@@ -41,7 +41,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 
     localStorage.setItem("user", JSON.stringify(data.user))
 
-    window.location.href = "/static/dashboard.html"
+    window.location.href = "/static/base.html"
   } catch (error) {
     errorMessage.textContent = error.message
     errorMessage.style.display = "block"
