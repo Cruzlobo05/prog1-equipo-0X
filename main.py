@@ -21,8 +21,9 @@ app.add_middleware(
 # ------------------ ARCHIVOS ESTÁTICOS ------------------
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# ------------------ CARGA DE USUARIOS ------------------
+# ------------------ CARGA DE USUARIOS Y DATOS ------------------
 json_path = os.path.join(os.path.dirname(__file__), "users.json")
+inventario_path = os.path.join(os.path.dirname(__file__), "data", "inventario.json")
 
 def load_users():
     if os.path.exists(json_path):
@@ -38,6 +39,22 @@ def load_users():
 
 def save_users(data):
     with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
+def load_inventario():
+    if os.path.exists(inventario_path):
+        try:
+            with open(inventario_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print("⚠️ Error al cargar inventario.json:", e)
+            return {"items": []}
+    else:
+        return {"items": []}
+
+def save_inventario(data):
+    os.makedirs(os.path.dirname(inventario_path), exist_ok=True)
+    with open(inventario_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
 fake_users_db = load_users()
@@ -116,7 +133,101 @@ def get_user(email: str):
         return JSONResponse(status_code=404, content={"detail": "Usuario no encontrado"})
     return usuario
 
-# ------------------ DASHBOARD: DATOS ------------------
+# ==================== INVENTARIO ====================
+
+# Obtener todos los productos del inventario
+@app.get("/api/inventario")
+def get_inventario():
+    inventario = load_inventario()
+    return inventario
+
+# Obtener un producto específico por ID
+@app.get("/api/inventario/{producto_id}")
+def get_producto(producto_id: int):
+    inventario = load_inventario()
+    producto = next((p for p in inventario["items"] if p["id"] == producto_id), None)
+    if not producto:
+        return JSONResponse(status_code=404, content={"error": "Producto no encontrado"})
+    return producto
+
+# Crear nuevo producto
+class ProductoRequest(BaseModel):
+    nombre: str
+    stock: int
+    precio: float
+    categoria: str = "General"
+    descripcion: str = ""
+
+@app.post("/api/inventario")
+async def crear_producto(data: ProductoRequest):
+    inventario = load_inventario()
+    
+    # Generar ID único
+    nuevo_id = max([p.get("id", 0) for p in inventario["items"]], default=0) + 1
+    
+    nuevo_producto = {
+        "id": nuevo_id,
+        "nombre": data.nombre,
+        "stock": data.stock,
+        "precio": data.precio,
+        "categoria": data.categoria,
+        "descripcion": data.descripcion
+    }
+    
+    inventario["items"].append(nuevo_producto)
+    save_inventario(inventario)
+    
+    return {"message": "Producto creado exitosamente", "producto": nuevo_producto}
+
+# Actualizar producto
+@app.put("/api/inventario/{producto_id}")
+async def actualizar_producto(producto_id: int, data: ProductoRequest):
+    inventario = load_inventario()
+    producto = next((p for p in inventario["items"] if p["id"] == producto_id), None)
+    
+    if not producto:
+        return JSONResponse(status_code=404, content={"error": "Producto no encontrado"})
+    
+    producto["nombre"] = data.nombre
+    producto["stock"] = data.stock
+    producto["precio"] = data.precio
+    producto["categoria"] = data.categoria
+    producto["descripcion"] = data.descripcion
+    
+    save_inventario(inventario)
+    
+    return {"message": "Producto actualizado exitosamente", "producto": producto}
+
+# Eliminar producto
+@app.delete("/api/inventario/{producto_id}")
+async def eliminar_producto(producto_id: int):
+    inventario = load_inventario()
+    inventario["items"] = [p for p in inventario["items"] if p["id"] != producto_id]
+    
+    save_inventario(inventario)
+    
+    return {"message": "Producto eliminado exitosamente"}
+
+# Obtener estadísticas del inventario
+@app.get("/api/inventario-stats")
+def get_inventario_stats():
+    inventario = load_inventario()
+    items = inventario["items"]
+    
+    total_stock = sum(p.get("stock", 0) for p in items)
+    valor_total = sum(p.get("stock", 0) * p.get("precio", 0) for p in items)
+    cantidad_productos = len(items)
+    productos_bajo_stock = sum(1 for p in items if p.get("stock", 0) < 20)
+    
+    return {
+        "total_stock": total_stock,
+        "valor_total": valor_total,
+        "cantidad_productos": cantidad_productos,
+        "productos_bajo_stock": productos_bajo_stock
+    }
+
+# ==================== DASHBOARD ====================
+
 @app.get("/api/dashboard/ventas")
 def get_ventas():
     return {
@@ -130,6 +241,25 @@ def get_entregas():
         "labels": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
         "data": [45, 52, 48, 62, 55, 68, 42]
     }
+
+# Obtener datos del dashboard (combinados)
+@app.get("/api/dashboard/stats")
+def get_dashboard_stats():
+    inventario = load_inventario()
+    items = inventario["items"]
+    
+    # Estadísticas de inventario
+    total_stock = sum(p.get("stock", 0) for p in items)
+    
+    # Aquí puedes agregar más estadísticas según necesites
+    stats = {
+        "clientes_activos": 4,  # Desde clientes.json
+        "stock_total": total_stock,
+        "ventas_totales": 625000,
+        "entregas_semana": 4
+    }
+    
+    return stats
 
 # ------------------ FUNCIÓN DE CORREO (SIMULADA) ------------------
 def enviar_codigo(destinatario, codigo):
