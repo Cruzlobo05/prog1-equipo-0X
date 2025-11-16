@@ -1,0 +1,17 @@
+{
+  "admin@soderia.com": {
+    "email": "admin@soderia.com",
+    "username": "admin",
+    "password": "admin123",
+    "name": "Administrador",
+    "role": "admin",
+    "codigo_recuperacion": "697722"
+  },
+  "lucas@empresa.com": {
+    "email": "lucas@empresa.com",
+    "username": "lucas",
+    "password": "lucas456",
+    "name": "Lucas",
+    "role": "usuario"
+  }
+}
