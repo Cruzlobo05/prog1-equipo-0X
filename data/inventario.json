@@ -1,6 +1,36 @@
 {
   "items": [
-    { "nombre": "Bidón 20L", "stock": 120 },
-    { "nombre": "Bidón 10L", "stock": 80 }
+    {
+      "id": 1,
+      "nombre": "Bidón 20L",
+      "stock": 120,
+      "precio": 350.00,
+      "categoria": "Bidones",
+      "descripcion": "Bidón de agua de 20 litros"
+    },
+    {
+      "id": 2,
+      "nombre": "Bidón 10L",
+      "stock": 80,
+      "precio": 200.00,
+      "categoria": "Bidones",
+      "descripcion": "Bidón de agua de 10 litros"
+    },
+    {
+      "id": 3,
+      "nombre": "Botella 1.5L",
+      "stock": 250,
+      "precio": 45.00,
+      "categoria": "Botellas",
+      "descripcion": "Botella de agua de 1.5 litros"
+    },
+    {
+      "id": 4,
+      "nombre": "Botella 500ml",
+      "stock": 400,
+      "precio": 20.00,
+      "categoria": "Botellas",
+      "descripcion": "Botella de agua de 500ml"
+    }
   ]
 }
