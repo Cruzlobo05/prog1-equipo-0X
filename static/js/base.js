@@ -1,6 +1,6 @@
 // --- CONFIGURACIÓN GLOBAL ---
 // Definimos la URL aquí para que esté disponible en todas las secciones, esta podemos modificarla si a alguno no le funciona en su pc
-window.API_URL = 'http://127.0.0.1:8000';
+window.API_URL = window.location.origin;
 
 let dashboardRefreshInterval = null;
 let salesChart = null;

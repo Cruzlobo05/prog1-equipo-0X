@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000"
+const API_URL = window.location.origin
 
 // Enviar código de recuperación
 document.getElementById("recuperarForm").addEventListener("submit", async (e) => {
