@@ -5,13 +5,34 @@
     "password": "admin123",
     "name": "Administrador",
     "role": "admin",
-    "codigo_recuperacion": "676565"
+    "estado": "activo",
+    "codigo_recuperacion": null
   },
   "lucas@empresa.com": {
     "email": "lucas@empresa.com",
     "username": "lucas",
     "password": "lucas456",
     "name": "Lucas",
-    "role": "usuario"
+    "role": "repartidor",
+    "estado": "activo",
+    "codigo_recuperacion": null
+  },
+  "carlos@soderia.com": {
+    "email": "carlos@soderia.com",
+    "username": "Carlos",
+    "password": "carlos123",
+    "name": "Carlos",
+    "role": "empleado",
+    "estado": "activo",
+    "codigo_recuperacion": null
+  },
+  "juan@soderia.com": {
+    "email": "juan@soderia.com",
+    "username": "juan",
+    "password": "juan123",
+    "name": "juan",
+    "role": "admin",
+    "estado": "activo",
+    "codigo_recuperacion": null
   }
 }

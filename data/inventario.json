@@ -1,6 +1,44 @@
 {
   "items": [
-    { "nombre": "Bidón 20L", "stock": 120 },
-    { "nombre": "Bidón 10L", "stock": 80 }
+    {
+      "id": 1,
+      "nombre": "Bidon 20L",
+      "stock": 63,
+      "precio": 5200.0,
+      "categoria": "Bidones",
+      "descripcion": "undefined"
+    },
+    {
+      "id": 2,
+      "nombre": "Bidon 10L",
+      "stock": 50,
+      "precio": 3000.0,
+      "categoria": "Bidones",
+      "descripcion": "undefined"
+    },
+    {
+      "id": 3,
+      "nombre": "agua",
+      "stock": 10,
+      "precio": 900.0,
+      "categoria": "Botellas",
+      "descripcion": ""
+    },
+    {
+      "id": 4,
+      "nombre": "Agua Mineral",
+      "stock": 150,
+      "precio": 1800.0,
+      "categoria": "Botellas",
+      "descripcion": "undefined"
+    },
+    {
+      "id": 5,
+      "nombre": "Jugo Natural",
+      "stock": 90,
+      "precio": 2500.0,
+      "categoria": "Botellas",
+      "descripcion": "undefined"
+    }
   ]
 }

@@ -1,2 +1,93 @@
-<h2>Reportes</h2>
-<p>Visualización de reportes y estadísticas avanzadas.</p>
+<div id="reportes-container">
+    <!-- Header -->
+    <div id="reportes-header">
+        <div id="reportes-header-content">
+            <div id="reportes-title-section">
+                <h1 id="reportes-main-title">Reportes y Análisis</h1>
+                <p id="reportes-subtitle">Métricas de rendimiento y análisis de negocio</p>
+            </div>
+            <button id="exportar-todo-btn">
+                <svg id="exportar-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Exportar Todo
+            </button>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div id="filtros-section">
+        <h2 id="filtros-title">Filtros de Análisis</h2>
+        <p id="filtros-subtitle">Personaliza el periodo y alcance de los reportes</p>
+        
+        <div id="filtros-controls">
+            <div id="filtro-periodo">
+                <label for="periodo-select" id="periodo-label">Periodo</label>
+                <select id="periodo-select">
+                    <option value="6">Últimos 6 meses</option>
+                    <option value="3">Últimos 3 meses</option>
+                    <option value="12">Último año</option>
+                </select>
+            </div>
+            
+            <div id="filtro-periodo">
+                <label for="zona-select" id="zona-label">Zona</label>
+                <select id="zona-select">
+                    <option value="todas">Todas las zonas</option>
+                    <option value="norte">Zona Norte</option>
+                    <option value="sur">Zona Sur</option>
+                    <option value="este">Zona Este</option>
+                    <option value="oeste">Zona Oeste</option>
+                </select>
+            </div>
+
+            <button id="filtrar-btn" class="filtro-button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                Buscar
+            </button>
+        </div>
+    </div>
+
+    <!-- Ventas por Periodo -->
+    <div id="ventas-periodo-section">
+        <div id="ventas-periodo-header">
+            <div id="ventas-periodo-info">
+                <h2 id="ventas-periodo-title">Ventas por Período</h2>
+                <p id="ventas-periodo-description">Evolución de ventas, pedidos y clientes</p>
+            </div>
+        </div>
+        <div id="ventas-periodo-chart-container">
+            <canvas id="ventas-mensuales-chart"></canvas>
+        </div>
+    </div>
+
+    <!-- Ventas por Zona -->
+    <div id="ventas-zona-section">
+        <div id="ventas-zona-header">
+            <div id="ventas-zona-info">
+                <h2 id="ventas-zona-title">Ventas por Zona</h2>
+                <p id="ventas-zona-description">Distribución geográfica de ventas</p>
+            </div>
+        </div>
+        <div id="ventas-zona-chart-container">
+            <canvas id="ventas-zona-chart"></canvas>
+        </div>
+    </div>
+</div>
+<!-- Productos Top -->
+<div id="productos-top-section">
+  <div id="productos-top-header">
+    <div id="productos-top-info">
+      <h2 id="productos-top-title">Productos Más Vendidos</h2>
+      <p id="productos-top-description">Ranking de productos por cantidad vendida</p>
+    </div>
+  </div>
+  <div id="productos-top-chart-container">
+    <canvas id="productos-top-chart"></canvas>
+  </div>
+</div>

@@ -1,0 +1,399 @@
+/* ==================== GENERAL ==================== */
+body {
+  background: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==================== CONTENEDOR PRINCIPAL ==================== */
+#inventario-container {
+  width: 100%;
+  padding: 20px 40px;
+  animation: fadeIn .3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== HEADER ==================== */
+#inventario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+#inventario-title-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+#inventario-subtitle {
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+#btn-agregar-producto {
+  background: #1e6bb8;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+#btn-agregar-producto:hover {
+  background: #1557a0;
+  transform: translateY(-2px);
+}
+
+/* ==================== TARJETAS DE ESTADÍSTICAS ==================== */
+#inventario-stats {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+[data-role="stat-card"] {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+  transition: .2s;
+}
+
+[data-role="stat-card"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,.12);
+}
+
+[data-role="stat-icon"] {
+  font-size: 36px;
+}
+
+[data-role="stat-label"] {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+[data-role="stat-value"] {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* ==================== TABLA ==================== */
+[data-role="table-container"] {
+  margin-top: 30px;
+  background: white;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.10);
+  overflow: hidden;
+}
+
+#tabla-inventario {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tabla-inventario thead {
+  background: #f9fafb;
+}
+
+#tabla-inventario th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
+
+#tabla-inventario td {
+  padding: 18px;
+  font-size: 14px;
+  color: #4b5563;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#tabla-inventario tbody tr:hover {
+  background: #f3f4f6;
+}
+
+/* ==================== BADGES DE STOCK ==================== */
+[id^="stock-badge"] {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 14px;
+  background: #d1fae5;
+  color: #065f46;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+[id$="-bajo"] {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+}
+
+/* ==================== ACCIONES ==================== */
+[id^="acciones-"] {
+  display: flex;
+  gap: 10px;
+}
+
+[id^="btn-editar-"], 
+[id^="btn-eliminar-"] {
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: .2s;
+}
+
+[id^="btn-editar-"]:hover {
+  background: #e0edff;
+  border-color: #1d4ed8;
+}
+
+[id^="btn-eliminar-"]:hover {
+  background: #ffe2e2;
+  border-color: #dc2626;
+}
+
+/* ==================== MODAL ==================== */
+#modal-producto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  display: none;     /* El JS lo cambia a flex */
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  /* IMPORTANTEEE */
+  pointer-events: auto;
+}
+
+[data-role="modal-content"] {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  padding: 0;
+  animation: slideUp .25s ease-out;
+  position: relative;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+[data-role="modal-header"] {
+  padding: 20px 28px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-role="btn-cerrar"] {
+  font-size: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+[data-role="btn-cerrar"]:hover {
+  color: #111827;
+}
+
+/* ==================== FORMULARIO ==================== */
+#form-producto {
+  padding: 28px;
+}
+
+[data-role="form-group"] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+[data-role="form-group"] label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
+
+[data-role="form-group"] input,
+[data-role="form-group"] select,
+[data-role="form-group"] textarea {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+[data-role="form-group"] input:focus,
+[data-role="form-group"] select:focus,
+[data-role="form-group"] textarea:focus {
+  border-color: #1e6bb8;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30,107,184,.2);
+}
+
+/* ROW STOCK + PRECIO */
+[data-role="form-row"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* FOOTER BOTONES */
+[data-role="modal-footer"] {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+[data-role="btn-primary"],
+[data-role="btn-secondary"] {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+}
+
+[data-role="btn-primary"] {
+  background: #1e6bb8;
+  color: white;
+}
+[data-role="btn-primary"]:hover {
+  background: #1557a0;
+}
+
+[data-role="btn-secondary"] {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+[data-role="btn-secondary"]:hover {
+  background: #d1d5db;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  [data-role="table-container"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#tabla-inventario {
+  min-width: 700px; /* o más si tenés muchas columnas */
+  width: 100%;
+  border-collapse: collapse;
+}
+  body {
+    padding-top: 56px; /* espacio para el header fijo */
+  }
+
+  #inventario-container {
+    padding: 16px;
+  }
+
+  #inventario-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  #inventario-title-section h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  #inventario-subtitle {
+    text-align: center;
+    width: 100%;
+  }
+
+  #btn-agregar-producto {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  #inventario-stats {
+    grid-template-columns: 1fr;
+  }
+
+  [data-role="form-row"] {
+    grid-template-columns: 1fr;
+  }
+
+  [data-role="modal-content"] {
+    width: 92%;
+    margin-top: 56px;
+    max-height: calc(100vh - 72px);
+  }
+
+  [data-role="modal-header"] {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  [data-role="modal-footer"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  [data-role="btn-primary"],
+  [data-role="btn-secondary"] {
+    width: 100%;
+  }
+  [data-role="table-container"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#tabla-inventario {
+  min-width: 600px; /* o más si tenés muchas columnas */
+}
+  #tabla-inventario th,
+  #tabla-inventario td {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  [id^="acciones-"] {
+    flex-direction: column;
+    gap: 6px;
+  }
+  #main-dynamic-content,
+#inventario-container {
+  padding-bottom: 96px; /* espacio extra para evitar corte en móviles */
+}
+}

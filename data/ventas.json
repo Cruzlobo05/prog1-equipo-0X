@@ -1,9 +1,427 @@
 [
-  { "mes": "Ene", "monto": 65000 },
-  { "mes": "Feb", "monto": 72000 },
-  { "mes": "Mar", "monto": 68000 },
-  { "mes": "Abr", "monto": 78000 },
-  { "mes": "May", "monto": 82000 },
-  { "mes": "Jun", "monto": 95000 },
-  { "mes": "Jul", "monto": 98000 }
+  {
+    "cliente_id": 8,
+    "monto": 30000.0,
+    "tipo_pago": "pagado",
+    "id": 1763453929,
+    "fecha": "2025-11-14T05:18:49.145180",
+    "cliente_nombre": "cruz"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 100.0,
+    "tipo_pago": "fiado",
+    "id": 1763454831,
+    "fecha": "2025-11-18T05:33:51.288802",
+    "cliente_nombre": "Almacen San Jose"
+  },
+  {
+    "cliente_id": 3,
+    "monto": 11000.0,
+    "tipo_pago": "pagado",
+    "id": 1763454864,
+    "fecha": "2025-11-19T05:34:24.103094",
+    "cliente_nombre": "Minimercado Norte"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 100.0,
+    "tipo_pago": "fiado",
+    "id": 1763502778,
+    "fecha": "2025-11-18T18:52:58.241483",
+    "cliente_nombre": "luis",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 2,
+    "monto": 1000.0,
+    "tipo_pago": "pagado",
+    "id": 1763503951,
+    "fecha": "2025-11-18T19:12:31.643457",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 150.0,
+    "tipo_pago": "pagado",
+    "productos": [],
+    "id": 1763504324,
+    "fecha": "2025-11-18T19:18:44.728902",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 100.0,
+    "tipo_pago": "pagado",
+    "productos": [],
+    "id": 1763504382,
+    "fecha": "2025-11-18T19:19:42.491929",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 10,
+    "monto": 100.0,
+    "tipo_pago": "pagado",
+    "productos": [],
+    "id": 1763504428,
+    "fecha": "2025-11-18T19:20:28.432975",
+    "cliente_nombre": "cruz",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 300.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 4
+      }
+    ],
+    "id": 1763508280,
+    "fecha": "2025-11-18T20:24:40.791275",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 20000.0,
+    "tipo_pago": "fiado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 7
+      }
+    ],
+    "id": 1763508902,
+    "fecha": "2025-11-18T20:35:02.856041",
+    "cliente_nombre": "luis",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 3,
+    "monto": 2000.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 4
+      }
+    ],
+    "id": 1763508941,
+    "fecha": "2025-11-18T20:35:41.024645",
+    "cliente_nombre": "Minimercado Norte",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 2,
+    "monto": 3000.0,
+    "tipo_pago": "fiado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 3
+      }
+    ],
+    "id": 1763508967,
+    "fecha": "2025-11-18T20:36:07.321142",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 6000.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 3
+      }
+    ],
+    "id": 1763509741,
+    "fecha": "2025-11-18T20:49:01.596550",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 2,
+    "monto": 3000.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 4
+      }
+    ],
+    "id": 1763509795,
+    "fecha": "2025-11-18T20:49:55.485259",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 0.0,
+    "tipo_pago": "fiado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 1
+      }
+    ],
+    "id": 1763509881,
+    "fecha": "2025-11-18T20:51:21.962713",
+    "cliente_nombre": "luis",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 0.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 2
+      }
+    ],
+    "id": 1763510085,
+    "fecha": "2025-11-18T20:54:45.137372",
+    "cliente_nombre": "luis",
+    "zona": "norte",
+    "total_calculado": 6000.0,
+    "pago_cliente": 0.0,
+    "deuda_generada": 6000.0
+  },
+  {
+    "cliente_id": 10,
+    "monto": 0.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 3
+      }
+    ],
+    "id": 1763510132,
+    "fecha": "2025-11-18T20:55:32.891696",
+    "cliente_nombre": "cruz",
+    "zona": "sur",
+    "total_calculado": 15600.0,
+    "pago_cliente": 0.0,
+    "deuda_generada": 15600.0
+  },
+  {
+    "cliente_id": 3,
+    "monto": 0.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 5
+      }
+    ],
+    "id": 1763510220,
+    "fecha": "2025-11-18T20:57:00.210672",
+    "cliente_nombre": "Minimercado Norte",
+    "zona": "norte",
+    "total_calculado": 26000.0,
+    "pago_cliente": 0.0,
+    "deuda_generada": 26000.0
+  },
+  {
+    "cliente_id": 3,
+    "monto": 20000.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 6
+      }
+    ],
+    "id": 1763510242,
+    "fecha": "2025-11-18T20:57:22.121094",
+    "cliente_nombre": "Minimercado Norte",
+    "zona": "norte",
+    "total_calculado": 31200.0,
+    "pago_cliente": 20000.0,
+    "deuda_generada": 11200.0
+  },
+  {
+    "cliente_id": 2,
+    "monto": 20000.0,
+    "tipo_pago": "pago_de_deuda",
+    "productos": [],
+    "id": 1763512128,
+    "fecha": "2025-11-18T21:28:48.321875",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este",
+    "total_calculado": 0,
+    "pago_cliente": 20000.0,
+    "deuda_generada": 0
+  },
+  {
+    "cliente_id": 2,
+    "monto": 20000.0,
+    "tipo_pago": "pago_de_deuda",
+    "productos": [],
+    "id": 1763512352,
+    "fecha": "2025-11-18T21:32:32.589660",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este",
+    "total_calculado": 0,
+    "pago_cliente": 20000.0,
+    "deuda_generada": 0
+  },
+  {
+    "cliente_id": 2,
+    "monto": 15000,
+    "tipo_pago": "pago_de_deuda",
+    "productos": [],
+    "total": 0,
+    "pago_cliente": 15000,
+    "deuda": -15000,
+    "is_pago_de_deuda": true,
+    "id": 1763512597,
+    "fecha": "2025-11-18T21:36:37.013709",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 0,
+    "tipo_pago": "contado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 11
+      }
+    ],
+    "total": 57200,
+    "pago_cliente": 0,
+    "deuda": 57200,
+    "id": 1763512611,
+    "fecha": "2025-11-18T21:36:51.361401",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 20000,
+    "tipo_pago": "pago_de_deuda",
+    "productos": [],
+    "total": 0,
+    "pago_cliente": 20000,
+    "deuda": -20000,
+    "is_pago_de_deuda": true,
+    "id": 1763512630,
+    "fecha": "2025-11-18T21:37:10.326711",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 900,
+    "tipo_pago": "contado",
+    "productos": [
+      {
+        "producto_id": 3,
+        "cantidad": 1
+      }
+    ],
+    "total": 900,
+    "pago_cliente": 900,
+    "deuda": 0,
+    "id": 1763519138,
+    "fecha": "2025-11-18T23:25:38.953152",
+    "cliente_nombre": "luis",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 2,
+    "monto": 15000,
+    "tipo_pago": "contado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 5
+      }
+    ],
+    "total": 15000,
+    "pago_cliente": 15000.0,
+    "deuda": 0,
+    "id": 1763519389,
+    "fecha": "2025-11-18T23:29:49.258865",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este",
+    "total_calculado": 15000.0,
+    "deuda_generada": 0
+  },
+  {
+    "cliente_id": 3,
+    "monto": 8500.0,
+    "tipo_pago": "pagado",
+    "id": 1762001123,
+    "fecha": "2025-09-17T10:22:15.123456",
+    "cliente_nombre": "Minimercado Norte",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 1,
+    "monto": 120.0,
+    "tipo_pago": "fiado",
+    "id": 1762001189,
+    "fecha": "2025-09-20T14:45:32.654321",
+    "cliente_nombre": "Almacen San Jose",
+    "zona": "sur"
+  },
+  {
+    "cliente_id": 2,
+    "monto": 5000.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 2,
+        "cantidad": 2
+      }
+    ],
+    "id": 1762001255,
+    "fecha": "2025-09-25T09:30:00.789012",
+    "cliente_nombre": "Kiosco Central",
+    "zona": "este"
+  },
+  {
+    "cliente_id": 9,
+    "monto": 18000.0,
+    "tipo_pago": "fiado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 6
+      }
+    ],
+    "id": 1762001321,
+    "fecha": "2025-10-02T16:10:45.456789",
+    "cliente_nombre": "luis",
+    "zona": "norte"
+  },
+  {
+    "cliente_id": 10,
+    "monto": 0.0,
+    "tipo_pago": "pagado",
+    "productos": [
+      {
+        "producto_id": 1,
+        "cantidad": 2
+      }
+    ],
+    "id": 1762001387,
+    "fecha": "2025-10-10T11:05:27.987654",
+    "cliente_nombre": "cruz",
+    "zona": "sur",
+    "total_calculado": 10400.0,
+    "pago_cliente": 0.0,
+    "deuda_generada": 10400.0
+  }
 ]

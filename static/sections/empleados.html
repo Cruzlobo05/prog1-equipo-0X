@@ -1,2 +1,135 @@
-<h2>Empleados</h2>
-<p>Gestión de empleados próximamente...</p>
+<link rel="stylesheet" href="/static/css/empleados.css">
+
+<div id="main-wrapper">
+  <div id="header-section">
+    <div id="header-content">
+      <h1 id="main-title">Gestión de Empleados</h1>
+      <p id="main-subtitle">Administra los usuarios del sistema y sus roles</p>
+    </div>
+
+    <button id="agregar-btn" class="btn btn-primary">
+      <svg id="plus-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Agregar Empleado
+    </button>
+  </div>
+
+  <div id="filtros-section" class="card">
+    <div id="filtros-header">
+      <h2 id="filtros-title" class="section-title">Filtros</h2>
+      <p id="filtros-subtitle" class="section-subtitle">Busca y filtra empleados</p>
+    </div>
+
+    <div id="filtros-content">
+      <div id="search-wrapper">
+        <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input id="search-input" type="text" class="form-input" placeholder="Buscar por nombre o usuario...">
+      </div>
+
+      <div id="filters-row">
+        <select id="rol-filter" class="form-select">
+          <option value="">Todos los roles</option>
+          <option value="admin">Administrador</option>
+          <option value="empleado">Empleado</option>
+        </select>
+
+        <select id="estado-filter" class="form-select">
+          <option value="">Todos</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="empleados-section" class="card">
+    <div id="empleados-header">
+      <h2 id="empleados-title" class="section-title">Empleados (<span id="empleados-count">0</span>)</h2>
+      <p id="empleados-subtitle" class="section-subtitle">Lista completa de empleados registrados</p>
+    </div>
+
+    <div id="table-wrapper">
+      <table id="empleados-table">
+        <thead id="table-head">
+          <tr id="header-row">
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" style="display: none;">
+  <div id="modal-container">
+    <div id="modal-header">
+      <h2 id="modal-title">Agregar Nuevo Empleado</h2>
+      <button id="modal-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <form id="empleado-form">
+      <div id="form-grid">
+        <div id="form-group-nombre">
+          <label for="input-nombre">Nombre Completo *</label>
+          <input id="input-nombre" type="text" class="form-input" required maxlength="100" placeholder="Ej: Juan Pérez">
+        </div>
+
+        <div id="form-group-usuario">
+          <label for="input-usuario">Usuario *</label>
+          <input id="input-usuario" type="text" class="form-input" required maxlength="50" placeholder="Ej: jperez">
+        </div>
+
+        <div id="form-group-password">
+          <label for="input-password">Contraseña *</label>
+          <input id="input-password" type="password" class="form-input" required minlength="6" placeholder="********">
+        </div>
+
+        <div id="form-group-email">
+          <label for="input-email">Email *</label>
+          <input id="input-email" type="email" class="form-input" required maxlength="255" placeholder="empleado@email.com">
+        </div>
+
+        <div id="form-group-rol">
+          <label for="input-rol">Rol *</label>
+          <select id="input-rol" class="form-select" required>
+            <option value="">Seleccionar rol</option>
+            <option value="admin">Administrador</option>
+            <option value="empleado">Empleado</option>
+          </select>p
+        </div>
+
+        <div id="form-group-estado">
+          <label for="input-estado">Estado *</label>
+          <select id="input-estado" class="form-select" required>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="modal-footer">
+        <button type="button" id="btn-cancelar" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" id="btn-guardar" class="btn btn-primary">Guardar Empleado</button>
+      </div>
+    </form>
+  </div>
+</div>
+

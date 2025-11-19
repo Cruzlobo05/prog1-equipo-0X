@@ -1,26 +1,51 @@
 [
   {
     "id": 1,
-    "nombre": "Almacén San José",
-    "direccion": "Av. San Martín 1234",
-    "telefono": "11-4567-8901"
+    "nombre": "Almacen San Jose",
+    "email": "cliente@email",
+    "telefono": "11-4567-8901",
+    "zona": "sur",
+    "direccion": "Av. San Mart\u00edn 1234",
+    "bidones": 0,
+    "deuda": 0,
+    "estado": "activo"
   },
   {
     "id": 2,
     "nombre": "Kiosco Central",
     "direccion": "Calle Principal 567",
-    "telefono": "11-2345-6789"
+    "telefono": "11-2345-6789",
+    "zona": "este",
+    "deuda": 45200.0
   },
   {
     "id": 3,
     "nombre": "Minimercado Norte",
     "direccion": "Barrio Alto",
-    "telefono": "11-9876-5432"
+    "telefono": "11-9876-5432",
+    "zona": "norte",
+    "deuda": 37200.0
   },
   {
-    "id": 4,
-    "nombre": "Bar El Encuentro",
-    "direccion": "5 de Julio 2345",
-    "telefono": "11-1122-3344"
+    "id": 9,
+    "nombre": "luis",
+    "email": "luis@com",
+    "telefono": "11",
+    "zona": "norte",
+    "direccion": "libertador",
+    "bidones": 0,
+    "deuda": 26100.0,
+    "estado": "activo"
+  },
+  {
+    "id": 10,
+    "nombre": "cruz",
+    "email": "cruz@com",
+    "telefono": "11899",
+    "zona": "sur",
+    "direccion": "mamb",
+    "bidones": 0,
+    "deuda": 15600.0,
+    "estado": "activo"
   }
 ]

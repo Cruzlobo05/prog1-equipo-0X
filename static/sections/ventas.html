@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="/static/css/ventas.css">
+
+<div id="main-wrapper">
+    <div id="header-section">
+        <div id="header-content">
+            <h1 id="main-title" class="section-title">Registro de Ventas</h1>
+            <p id="main-subtitle" class="section-subtitle">Crea nuevas ventas y consulta el historial.</p>
+        </div>
+
+        <button id="agregar-venta-btn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Registrar Venta
+        </button>
+    </div>
+
+    <div id="filtros-ventas-section" class="card">
+        <div id="filtros-header">
+            <h2 class="section-title">Filtrar Ventas</h2>
+            <p class="section-subtitle">Busca por cliente o fecha</p>
+        </div>
+        <div id="filters-row">
+            <input id="ventas-search-input" type="text" class="form-input"
+                placeholder="Buscar por nombre de cliente...">
+            <input id="ventas-date-filter" type="date" class="form-input">
+        </div>
+    </div>
+
+    <div id="ventas-section" class="card">
+        <div id="ventas-header">
+            <h2 class="section-title">Historial de Ventas</h2>
+        </div>
+        <div id="table-wrapper">
+            <table id="ventas-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Tipo de Pago</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="ventas-table-body">
+                    <tr>
+                        <td colspan="5">Cargando historial...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-venta-overlay" class="modal-overlay">
+    <div id="modal-venta-container" class="modal-container">
+        <div class="modal-header">
+            <h2 id="modal-venta-title" class="modal-title">Registrar Nueva Venta</h2>
+            <button id="modal-venta-close" class="modal-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <form id="venta-form">
+            <div class="form-grid">
+
+                <div style="grid-column: span 2;">
+                    <label for="input-venta-cliente">Cliente *</label>
+                    <select id="input-venta-cliente" class="form-select" required>
+                        <option value="">Cargando clientes...</option>
+                    </select>
+                    <span class="error-message"></span>
+                </div>
+
+                <div style="grid-column: span 2;">
+                    <label>Elegir productos *</label>
+                    <div id="productos-container">
+                        <!-- líneas dinámicas -->
+                    </div>
+
+                </div>
+
+                <!--  CAJA DE CÁLCULOS AUTOMÁTICOS  -->
+                <div id="calculos-venta-box"
+                    style="grid-column: span 2; margin-top: 10px; padding: 15px; border: 1px solid #ddd; border-radius: 10px;">
+                    <p><strong>Total productos:</strong> $<span id="total-productos">0</span></p>
+
+                    <p><strong>Pago del cliente:</strong>
+                        <input type="number" id="pago-cliente" class="form-input" min="0" step="0.01" value="0"
+                            style="width: 120px;">
+                    </p>
+
+                    <p><strong>Deuda restante:</strong> $<span id="deuda-restante">0</span></p>
+                </div>
+
+                <div>
+                    <label for="input-venta-pago">Tipo de Pago *</label>
+                    <select id="input-venta-pago" class="form-select">
+                        <option value="contado">Contado</option>
+                        <option value="fiado">Fiado (Deuda nueva)</option>
+                        <option value="pago_de_deuda">Pago de deuda (sin productos)</option>
+                    </select>
+                    <span class="error-message"></span>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" id="btn-venta-guardar" class="btn btn-primary">Guardar Venta</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div id="modal-ver-venta-overlay">
+    <div id="modal-ver-venta-container">
+
+        <div id="modal-ver-venta-header">
+            <h2>Detalle de Venta</h2>
+            <button id="modal-ver-venta-close">×</button>
+        </div>
+
+        <div id="modal-ver-venta-content"></div>
+
+        <div id="modal-ver-venta-footer">
+            <button id="btn-ver-cerrar">Cerrar</button>
+        </div>
+
+    </div>
+</div>

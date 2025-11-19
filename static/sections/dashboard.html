@@ -1,4 +1,4 @@
-<!-- sections/dashboard.html -->
+
 <header id="dashboard-header">
   <div id="header-left">
     <h1 id="header-title">Panel Principal</h1>
@@ -35,4 +35,28 @@
     <div id="chart-header-2"><h3>Entregas Semanales</h3></div>
     <canvas id="deliveries-chart"></canvas>
   </div>
+</div>
+<div id="clientes-deudores-section" class="report-chart">
+  <div id="clientes-deudores-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+  <h3>Clientes con Más Deuda</h3>
+  <button id="exportar-deudores-btn" class="btn btn-secondary">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Exportar
+  </button>
+</div>
+  <table id="clientes-deudores-table">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Deuda</th>
+      </tr>
+    </thead>
+    <tbody id="clientes-deudores-body">
+      <!-- Se llena con JS -->
+    </tbody>
+  </table>
 </div>

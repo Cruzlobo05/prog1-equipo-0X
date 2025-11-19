@@ -1,9 +1,155 @@
-<h2>Clientes</h2>
-<table>
-  <thead>
-    <tr><th>Nombre</th><th>Teléfono</th><th>Dirección</th></tr>
-  </thead>
-  <tbody id="tabla-clientes">
-    <tr><td colspan="3">Cargando...</td></tr>
-  </tbody>
-</table>
+<link rel="stylesheet" href="/static/css/clientes.css">
+<div id="main-wrapper">
+  <div id="header-section">
+    <div id="header-content">
+      <h1 id="main-title">Gestión de Clientes</h1>
+      <p id="main-subtitle">Administra tu base de clientes y sus cuentas corrientes</p>
+    </div>
+    
+    <button id="agregar-btn" class="btn btn-primary">
+      <svg id="plus-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </svg>
+      Agregar Cliente
+    </button>
+  </div>
+
+  <div id="filtros-section" class="card">
+    <div id="filtros-header">
+      <h2 id="filtros-title" class="section-title">Filtros</h2>
+      <p id="filtros-subtitle" class="section-subtitle">Busca y filtra tus clientes</p>
+    </div>
+
+    <div id="filtros-content">
+      <div id="search-wrapper">
+        <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input id="search-input" type="text" class="form-input" placeholder="Buscar por nombre, teléfono o dirección...">
+      </div>
+
+      <div id="filters-row">
+        <select id="estado-filter" class="form-select">
+          <option value="">Todos</option>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+
+        <select id="zona-filter" class="form-select">
+          <option value="">Todas las zonas</option>
+          <option value="norte">Norte</option>
+          <option value="sur">Sur</option>
+          <option value="este">Este</option>
+          <option value="oeste">Oeste</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="clientes-section" class="card">
+    <div id="clientes-header">
+      <h2 id="clientes-title" class="section-title">Clientes (<span id="clientes-count">0</span>)</h2>
+      <p id="clientes-subtitle" class="section-subtitle">Lista completa de clientes registrados</p>
+    </div>
+
+    <div id="table-wrapper">
+      <table id="clientes-table">
+        <thead id="table-head">
+          <tr id="header-row">
+            <th>Cliente</th>
+            <th>Contacto</th>
+            <th>Dirección</th>
+            <th>Bidones</th>
+            <th>Deuda</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="modal-overlay">
+  <div id="modal-container">
+    <div id="modal-header">
+      <h2 id="modal-title">Agregar Nuevo Cliente</h2>
+      <button id="modal-close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <form id="cliente-form">
+      <div id="form-grid">
+        
+        <div id="form-group-nombre">
+          <label for="input-nombre">Nombre del Cliente *</label> <input id="input-nombre" type="text" class="form-input" required maxlength="100" placeholder="Ej: Almacén San José">
+          <span id="error-nombre" class="error-message"></span>
+        </div>
+
+        <div id="form-group-zona">
+          <label for="input-zona">Zona *</label>
+          <select id="input-zona" class="form-select" required>
+            <option value="">Seleccionar zona</option>
+            <option value="norte">Norte</option>
+            <option value="sur">Sur</option>
+            <option value="este">Este</option>
+            <option value="oeste">Oeste</option>
+          </select>
+          <span id="error-zona" class="error-message"></span>
+        </div>
+
+        <div id="form-group-telefono">
+          <label for="input-telefono">Teléfono *</label>
+          <input id="input-telefono" type="tel" class="form-input" required maxlength="20" placeholder="11-4567-8901">
+          <span id="error-telefono" class="error-message"></span>
+        </div>
+
+        <div id="form-group-email">
+          <label for="input-email">Email</label>
+          <input id="input-email" type="email" class="form-input" maxlength="255" placeholder="cliente@email.com">
+          <span id="error-email" class="error-message"></span>
+        </div>
+
+        <div id="form-group-direccion">
+          <label for="input-direccion">Dirección *</label>
+          <input id="input-direccion" type="text" class="form-input" required maxlength="200" placeholder="Av. San Martín 1234">
+          <span id="error-direccion" class="error-message"></span>
+        </div>
+
+        <div id="form-group-bidones">
+          <label for="input-bidones">Bidones</label>
+          <input id="input-bidones" type="number" class="form-input" min="0" max="999" placeholder="0">
+          <span id="error-bidones" class="error-message"></span>
+        </div>
+
+        <div id="form-group-deuda">
+          <label for="input-deuda">Deuda ($)</label>
+          <input id="input-deuda" type="number" class="form-input" min="0" step="0.01" placeholder="0.00">
+          <span id="error-deuda" class="error-message"></span>
+        </div>
+
+        <div id="form-group-estado">
+          <label for="input-estado">Estado *</label>
+          <select id="input-estado" class="form-select" required>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+          <span id="error-estado" class="error-message"></span>
+        </div>
+      </div>
+
+      <div id="modal-footer">
+        <button type="button" id="btn-cancelar" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" id="btn-guardar" class="btn btn-primary">Guardar Cliente</button>
+      </div>
+    </form>
+  </div>
+</div>

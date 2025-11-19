@@ -1,0 +1,397 @@
+#reportes-header {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#reportes-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#reportes-title-section {
+    flex: 1;
+}
+
+#reportes-main-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 0.5rem 0;
+}
+
+#reportes-subtitle {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+}
+
+.charts-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.report-chart {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.report-chart h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+}
+
+#exportar-todo-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#exportar-todo-btn:hover {
+    background-color: #1d4ed8;
+}
+
+#exportar-icon {
+    width: 20px;
+    height: 20px;
+}
+
+#filtros-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#filtros-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem 0;
+}
+
+#filtros-subtitle {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0 0 1.25rem 0;
+}
+
+#filtros-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#filtro-periodo,
+#filtro-zona {
+    flex: 1;
+    min-width: 200px;
+}
+
+
+#filtro-zona select {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+#periodo-label,
+#zona-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+#periodo-select,
+#zona-select {
+    width: 100%;
+    padding: 0.625rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    background-color: white;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+#periodo-select:hover,
+#zona-select:hover {
+    border-color: #2563eb;
+}
+
+#periodo-select:focus,
+#zona-select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#ventas-periodo-section,
+#ventas-zona-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#ventas-periodo-header,
+#ventas-zona-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+#ventas-periodo-info,
+#ventas-zona-info {
+    flex: 1;
+}
+
+#ventas-periodo-title,
+#ventas-zona-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem 0;
+}
+
+#ventas-periodo-description,
+#ventas-zona-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+}
+
+#exportar-zona-btn {
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#exportar-zona-btn:hover {
+    background-color: #f9fafb;
+    border-color: #2563eb;
+}
+
+#exportar-zona-icon {
+    width: 16px;
+    height: 16px;
+    color: #374151;
+}
+
+#exportar-zona-btn:hover #exportar-zona-icon {
+    color: #2563eb;
+}
+
+#ventas-periodo-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#ventas-mensuales-chart {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+#ventas-periodo-chart-container,
+#ventas-zona-chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+#ventas-periodo-chart,
+#ventas-zona-chart {
+    max-height: 400px;
+}
+
+#productos-top-section {
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+}
+
+#productos-top-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#productos-top-chart {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+#productos-top-section {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Botón Buscar con estilo de Exportar */
+.filtro-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    align-self: flex-end;
+}
+
+.filtro-button:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+}
+
+.filtro-button:active {
+    transform: translateY(0);
+}
+
+.filtro-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 56px;
+        /* espacio para el header fijo */
+    }
+
+    #reportes-container {
+        padding: 1rem;
+        padding-bottom: 96px;
+        /* espacio inferior para evitar corte */
+    }
+
+    #reportes-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    #reportes-main-title {
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    #reportes-subtitle {
+        text-align: center;
+        width: 100%;
+    }
+
+    #exportar-todo-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .charts-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .report-chart {
+        padding: 1rem;
+    }
+
+    .chart-container {
+        height: auto;
+        min-height: 280px;
+    }
+
+    #filtros-controls {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    #filtro-periodo,
+    #filtro-zona {
+        min-width: unset;
+        width: 100%;
+    }
+
+    #ventas-periodo-header,
+    #ventas-zona-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #exportar-zona-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    #ventas-periodo-chart-container,
+    #ventas-zona-chart-container,
+    #productos-top-chart-container {
+        padding: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    #productos-top-section,
+    #productos-top-chart {
+        margin-bottom: 96px;
+         margin-top: 0px;
+         padding-top: 1px;
+    }
+
+    .filtro-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
