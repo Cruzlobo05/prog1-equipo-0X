@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "nombre": "María González",
+    "edad": 45,
+    "telefono": "11-2345-6789",
+    "zona": "Belgrano",
+    "bidones": 4,
+    "deuda": 12500
+  },
+  {
+    "id": 2,
+    "nombre": "Carlos Rodríguez",
+    "edad": 38,
+    "telefono": "11-8765-4321",
+    "zona": "Palermo",
+    "bidones": 2,
+    "deuda": 6000
+  },
+  {
+    "id": 3,
+    "nombre": "Ana Martínez",
+    "edad": 52,
+    "telefono": "11-5555-7777",
+    "zona": "Recoleta",
+    "bidones": 5,
+    "deuda": 78900
+  },
+  {
+    "id": 4,
+    "nombre": "Jorge López",
+    "edad": 41,
+    "telefono": "11-9999-3333",
+    "zona": "Caballito",
+    "bidones": 3,
+    "deuda": 9800
+  },
+  {
+    "id": 5,
+    "nombre": "Laura Fernández",
+    "edad": 35,
+    "telefono": "11-4444-8888",
+    "zona": "Villa Urquiza",
+    "bidones": 1,
+    "deuda": 3200
+  }
+]
