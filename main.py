@@ -362,7 +362,6 @@ def get_inventario_stats():
 
 # ------------------ RUTAS: DASHBOARD Y REPORTES ------------------
 
-# (Nota: Tenías esta ruta duplicada, dejo la que usa la función load_ventas)
 @app.get("/api/dashboard/ventas")
 def get_ventas():
     return load_ventas()
@@ -668,7 +667,6 @@ def get_historial_ventas():
     return sorted(ventas, key=lambda v: v.get("fecha", ""), reverse=True)
 
 # --- ENDPOINT 2: REGISTRAR VENTA (POST) ---
-# --- EN main.py ---
 @app.post("/api/ventas")
 async def registrar_venta(venta: Venta, request: Request):
     clientes = load_clientes()
