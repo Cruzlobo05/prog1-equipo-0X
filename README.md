@@ -3,44 +3,36 @@
 ## Instalación
 
 1. Crear un entorno virtual:
-\`\`\`bash
+En terminar poner:
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+
+Una vez instalado, activar el entorno virtual con el siguiente comando:
+# Mac: source venv/bin/activate  # En Windows: venv\Scripts\activate
 \`\`\`
 
 2. Instalar dependencias:
-\`\`\`bash
+En terminar poner:
 pip install -r requirements.txt
 \`\`\`
 
-3. Crear la carpeta static:
-\`\`\`bash
-mkdir static
-\`\`\`
-
-4. Mover los archivos HTML, CSS y JS a la carpeta static/
-
 ## Ejecutar la aplicación
 
-\`\`\`bash
-python main.py
-\`\`\`
-
-O con uvicorn directamente:
-\`\`\`bash
+\`\`\`En terminar poner cualquiera de los 3 comandos de abajo:
+uvicorn main:app 
+uvicorn main:app --reload
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 \`\`\`
 
 ## Acceder a la aplicación
 
-- Frontend: http://localhost:8000
-- API Docs: http://localhost:8000/docs
-- ReDoc: http://localhost:8000/redoc
+Al ejecutarlo uvicorn le va a dar un link que al apretar CTRL + CLICK los dirige a la pagina
 
 ## Credenciales de prueba
 
-- Email: admin@soderia.com
+- Email: admin@soderia.com o admin
 - Contraseña: admin123
+
+#Hay mas credenciales en users.json o si agregan usuarios desde empleados
 
 ## Estructura del proyecto
 
@@ -49,17 +41,42 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ├── main.py              # Backend FastAPI
 ├── requirements.txt     # Dependencias Python
 ├── README.md           # Este archivo
+├── users.json          # Usuarios para logearse con permison
+├── data/    
+├   ├── clientes.json   # Base de datos de clientes 
+├   ├── entregas.json   # Base de datos de entregas
+├   ├── inventario.json # Base de datos de inventario
+├   ├── ventas.json     # Base de datos de ventas
 └── static/
-    ├── index.html      # Página de login
+    ├── index.html # Pagina de login
+    ├── base.html  # Pagina dinamica 
+    ├── recuperar.html #Pagina de recuperar contraseña
     ├── styles.css      # Estilos
-    └── script.js       # Lógica del frontend
+    ├──base.js # Lógica del frontend
+    ├── script.js       # Lógica del frontend
+    ├── css/
+    ├    ├── clientes.css   # Estilos
+    ├    ├── dashboard.css  # Estilos
+    ├    ├── empleados.css  # Estilos
+    ├    ├── inventario.css # Estilos
+    ├    ├── reportes.css   # Estilos
+    ├    └── ventas.css     # Estilos
+    ├── js/
+    ├    ├── base.js    # Lógica del frontend
+    ├    ├── clientes.js    # Lógica del frontend
+    ├    ├── dashboard.js   # Lógica del frontend
+    ├    ├── empleados.js   # Lógica del frontend
+    ├    ├── inventario.js  # Lógica del frontend
+    ├    ├── recuperar.js   # Lógica del frontend
+    ├    ├── reportes.js    # Lógica del frontend
+    ├    └── ventas.js  # Lógica del frontend
+    └── sections/
+         ├── clientes.html  #Modulo por categoria
+         ├── dashboard.html #Modulo por categoria
+         ├── empleados.html #Modulo por categoria
+         ├── inventario.html    #Modulo por categoria
+         ├── reportes.html  #Modulo por categoria
+         └── ventas.html    #Modulo por categoria
 \`\`\`
 
-## Próximos pasos
 
-1. Conectar a una base de datos real (PostgreSQL, MySQL, etc.)
-2. Implementar recuperación de contraseña por email
-3. Agregar más validaciones de seguridad
-4. Crear las pantallas adicionales del sistema
-5. Implementar refresh tokens
-6. Agregar rate limiting para prevenir ataques de fuerza bruta
