@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SodaStock - Clientes</title>
+    <link rel="stylesheet" href="clientes.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div id="logo">
+            <svg width="32" height="32" viewBox="0 0 32 32">
+                <circle cx="16" cy="16" r="14" fill="#4A9FD8"/>
+                <path d="M16 8 L20 16 L16 24 L12 16 Z" fill="white"/>
+            </svg>
+            <span>SodaStock</span>
+        </div>
+        <nav>
+            <a href="#" id="nav-dashboard">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="2" y="2" width="7" height="7"/>
+                    <rect x="11" y="2" width="7" height="7"/>
+                    <rect x="2" y="11" width="7" height="7"/>
+                    <rect x="11" y="11" width="7" height="7"/>
+                </svg>
+                Dashboard
+            </a>
+            <a href="#" id="nav-clientes">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 10 A4 4 0 1 1 10 2 A4 4 0 0 1 10 10 Z"/>
+                    <path d="M4 18 C4 14 6 12 10 12 C14 12 16 14 16 18"/>
+                </svg>
+                Clientes
+            </a>
+            <a href="#" id="nav-inventario">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <circle cx="10" cy="10" r="7"/>
+                </svg>
+                Inventario
+            </a>
+            <a href="#" id="nav-reportes">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <rect x="3" y="10" width="3" height="7"/>
+                    <rect x="8" y="6" width="3" height="11"/>
+                    <rect x="13" y="3" width="3" height="14"/>
+                </svg>
+                Reportes
+            </a>
+            <a href="#" id="nav-empleados">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <circle cx="7" cy="6" r="3"/>
+                    <circle cx="13" cy="6" r="3"/>
+                    <path d="M2 16 C2 13 4 11 7 11 C10 11 12 13 12 16"/>
+                    <path d="M8 16 C8 13 10 11 13 11 C16 11 18 13 18 16"/>
+                </svg>
+                Empleados
+            </a>
+        </nav>
+    </div>
+
+    <div id="main-content">
+        <div id="header">
+            <div>
+                <h1>Gestión de Clientes</h1>
+                <p>Administra la base de datos de clientes y contactos</p>
+            </div>
+            <span id="status">En línea</span>
+        </div>
+
+        <div id="content-area">
+            <div id="tabla-clientes">
+                <div id="tabla-header">
+                    <h2>Lista de Clientes</h2>
+                    <button id="btn-agregar">+ Agregar Cliente</button>
+                </div>
+
+                <table id="clientes-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Teléfono</th>
+                            <th>Zona</th>
+                            <th>Bidones</th>
+                            <th>Deuda</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientes-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-overlay">
+        <div id="modal">
+            <div id="modal-header">
+                <h2 id="modal-title">Agregar Cliente</h2>
+                <button id="btn-cerrar">&times;</button>
+            </div>
+            <div id="modal-body">
+                <div id="form-group">
+                    <label for="input-nombre">Nombre</label>
+                    <input type="text" id="input-nombre" placeholder="Nombre completo del cliente">
+                </div>
+                <div id="form-group">
+                    <label for="input-edad">Edad</label>
+                    <input type="number" id="input-edad" placeholder="Edad">
+                </div>
+                <div id="form-group">
+                    <label for="input-telefono">Teléfono</label>
+                    <input type="tel" id="input-telefono" placeholder="Número de teléfono">
+                </div>
+                <div id="form-group">
+                    <label for="input-zona">Zona</label>
+                    <input type="text" id="input-zona" placeholder="Zona de entrega">
+                </div>
+                <div id="form-group">
+                    <label for="input-bidones">Bidones</label>
+                    <input type="number" id="input-bidones" placeholder="Cantidad de bidones">
+                </div>
+                <div id="form-group">
+                    <label for="input-deuda">Deuda</label>
+                    <input type="number" id="input-deuda" placeholder="Monto de deuda">
+                </div>
+            </div>
+            <div id="modal-footer">
+                <button id="btn-cancelar">Cancelar</button>
+                <button id="btn-guardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="clientes.js"></script>
+</body>
+</html>
